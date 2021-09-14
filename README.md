@@ -39,8 +39,19 @@
 1. [pipenv](https://github.com/pypa/pipenv#installation)
 1. [jenkins](https://www.jenkins.io/doc/book/installing/war-file/)
 
+### 部署基础设施
+
+`docker-compose -d -f ./Infra.yml up`
+来完成 nginx 和 mysql 的部署。
+
+``` docker
+     Name                    Command                  State                   Ports
+-----------------------------------------------------------------------------------------------
+mysql.demo        docker-entrypoint.sh mysqld      Up             0.0.0.0:13306->3306/tcp,
+                                                                  33060/tcp
+www.example.com   /bin/sh -c bash -c "/usr/s ...   Up (healthy)   0.0.0.0:2023->22/tcp,
+```
+
 ### 构建镜像
 
-这个教程里使用的制品，以镜像的形式保存在本地。
-
-### 部署基础设施
+`docker-compose -f ./artifact.yml build`来完成
