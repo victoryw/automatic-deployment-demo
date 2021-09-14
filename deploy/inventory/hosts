@@ -1,0 +1,2 @@
+[dbserver]
+127.0.0.1:22 ansible_ssh_user=victoryw ansible_connection=local

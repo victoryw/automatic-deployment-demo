@@ -1,0 +1,9 @@
+---
+- hosts: dbserver
+  tasks:
+    - name: migration demo database
+      shell: 'docker run db-migration:1.0 -url=jdbc:mysql://192.168.0.101:13306/demo -user=demo -password=demo migrate'
+      register: command_output
+
+    - debug:
+        var: command_output.stdout_lines

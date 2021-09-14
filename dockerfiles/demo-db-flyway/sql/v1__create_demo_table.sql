@@ -1,0 +1,5 @@
+CREATE TABLE demo (
+    id      INT NOT NULL AUTO_INCREMENT,
+    title   VARCHAR(30),
+    PRIMARY KEY ( `id` )
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

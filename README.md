@@ -55,3 +55,17 @@ www.example.com   /bin/sh -c bash -c "/usr/s ...   Up (healthy)   0.0.0.0:2023->
 ### 构建镜像
 
 `docker-compose -f ./artifact.yml build`来完成
+
+``` docker
+REPOSITORY         TAG       IMAGE ID       CREATED          SIZE
+db-migration       1.0       40c50d8a3268   55 minutes ago   338MB
+```
+
+## 部署脚本
+
+### 本地
+
+#### 升级数据库
+
+`pipenv run ansible-playbook -i ./inventory/hosts db.yml`
+## 使用流水线
