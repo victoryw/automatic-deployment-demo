@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    environment {
+        Path="${PATH}:/usr/local/bin"
+    }
+
+    stages {
+        stage('migrate demo db') {
+            steps {
+                sh 'ansible-playbook -i ./deploy/inventory/hosts ./deploy/db.yml'
+            }
+        }
+
+        stage('deploy app') {
+            steps {
+                sh 'ansible-playbook -i ./deploy/inventory/hosts ./deploy/app.yml'
+            }
+        }
+
+        stage('adjust lb') {
+            steps {
+                sh 'ansible-playbook -i ./deploy/inventory/hosts ./deploy/lb.yml'
+            }
+        }
+    }
+}

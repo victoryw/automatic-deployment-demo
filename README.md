@@ -92,3 +92,4 @@ demo-app           1.0       3bc69b2ab6c7   30 minutes ago   913MB
 #### 更改Nginx
 `pipenv run ansible-playbook -i ./inventory/hosts lb.yml`
 ### 使用流水线
+`Jenkinsfile-dev`
