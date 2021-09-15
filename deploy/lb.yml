@@ -1,0 +1,30 @@
+---
+- hosts: lbserver
+  tasks:
+    - name: replace nginx config
+      become: yes
+      copy:
+        src: ./files/nginx/nginx.conf
+        dest: /etc/nginx/nginx.conf
+        mode: '0644'
+        backup: yes
+
+    - name: reload nginx config
+      command: nginx -s reload
+
+
+- hosts: client
+  tasks:
+    - name: smoke test
+      uri:
+        url: http://demo.app.self/demo
+        return_content: yes
+        status_code: 200
+      register: response
+      failed_when: response.content != "[{\"id\":1,\"title\":\"Demo\"}]"
+    
+    - debug:
+        var: response
+    
+    
+

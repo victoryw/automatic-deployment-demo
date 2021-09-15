@@ -1,5 +1,12 @@
+[client]
+127.0.0.1 ansible_user=victoryw ansible_connection=local
+
 [dbserver]
-127.0.0.1:22 ansible_ssh_user=victoryw ansible_connection=local
+dbserver ansible_user=victoryw ansible_connection=local
 
 [appserver]
-127.0.0.1:22 ansible_ssh_user=victoryw ansible_connection=local
+appserver ansible_user=victoryw ansible_connection=local
+
+[lbserver]
+lbserver ansible_port=2023 ansible_user=root ansible_connection=ssh
+
