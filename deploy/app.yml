@@ -1,0 +1,33 @@
+---
+- hosts: appserver
+  tasks:
+    - name: destroy release app
+      shell: >
+        docker rm app-v1 -f
+    - name: deploy new release app
+      shell: >
+        docker run 
+        -p 13000:3000 
+        -e DBHost=192.168.0.101 
+        -e DBPort=13306 
+        -e DBUser=demo 
+        -e DBPasswrod=demo 
+        -e DB=demo 
+        --name app-v1
+        -d  
+        demo-app:1.0
+      register: command_output
+
+    - debug:
+        var: command_output.stdout_lines
+
+    - name: smoke test
+      uri:
+        url: http://localhost:13000/demo
+        return_content: yes
+        status_code: 200
+      register: response
+      failed_when: response.content != "[{\"id\":1,\"title\":\"Demo\"}]"
+    
+    - debug:
+        var: response
