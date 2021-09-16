@@ -7,19 +7,19 @@ pipeline {
     stages {
         stage('migrate demo db') {
             steps {
-                sh 'ansible-playbook -i ./deploy/inventory/dev ./deploy/db.yml'
+                sh 'ansible-playbook -i ./deploy/inventory/prod ./deploy/db.yml'
             }
         }
 
         stage('deploy app') {
             steps {
-                sh 'ansible-playbook -i ./deploy/inventory/dev ./deploy/app.yml'
+                sh 'ansible-playbook -i ./deploy/inventory/prod ./deploy/app.yml'
             }
         }
 
         stage('adjust lb') {
             steps {
-                sh 'ansible-playbook -i ./deploy/inventory/dev ./deploy/lb.yml'
+                sh 'ansible-playbook -i ./deploy/inventory/prod ./deploy/lb.yml'
             }
         }
     }
