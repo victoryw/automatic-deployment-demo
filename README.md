@@ -93,3 +93,45 @@ demo-app           1.0       3bc69b2ab6c7   30 minutes ago   913MB
 `pipenv run ansible-playbook -i ./inventory/hosts lb.yml`
 ### 使用流水线
 `Jenkinsfile-dev`
+
+### 多环境
+#### 配置和脚本分离
+我们的目标是使用同一套部署脚本在不同环境中部署。  
+但是每个环境的硬件等配置信息不尽相同，这里就存在一个问题:如何使用同一个脚本适配到不同的环境？  
+方法就是配置信息不要hard code在脚本中，而是脚本通过变量来访问这些配置信息。  
+##### 具体处理例子
+这里使用了ansible的变量机制来实现的：
+
+1. 将配置信息提取为变量
+2. 在每个环境的inventory中设定变量对应的值
+
+###### 示例
+
+配置信息提取为变量
+
+``` yml
+- name: deploy new release app
+      shell: >
+        docker run 
+        -p {{app_port}}:3000 
+        -e DBHost={{db_host}} 
+        -e DBPort={{db_port}} 
+        -e DBUser={{db_user}} 
+        -e DBPasswrod={{ db_password }} 
+        -e DB={{ db_name }} 
+        --name app-v1
+        -d  
+        demo-app:1.0
+      register: command_output
+```
+
+在每个环境的inventory中设定变量对应的值
+
+``` yml
+[all:vars]
+service_url=http://demo.app.self/demo
+db_host=192.168.31.31
+db_port=13306
+db_name=demo
+db_user=demo
+```
