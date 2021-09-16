@@ -10,3 +10,12 @@ appserver ansible_user=victoryw ansible_connection=local
 [lbserver]
 lbserver ansible_port=2023 ansible_user=root ansible_connection=ssh
 
+[all:vars]
+service_url=http://demo.app.self/demo
+db_host=192.168.31.31
+db_port=13306
+db_name=demo
+db_user=demo
+db_password=demo
+app_host=192.168.31.31
+app_port=13000

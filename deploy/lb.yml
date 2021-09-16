@@ -3,8 +3,8 @@
   tasks:
     - name: replace nginx config
       become: yes
-      copy:
-        src: ./files/nginx/nginx.conf
+      template:
+        src: ./templates/nginx/nginx.conf.j2
         dest: /etc/nginx/nginx.conf
         mode: '0644'
         backup: yes
@@ -17,7 +17,7 @@
   tasks:
     - name: smoke test
       uri:
-        url: http://demo.app.self/demo
+        url: "{{ service_url }}"
         return_content: yes
         status_code: 200
       register: response

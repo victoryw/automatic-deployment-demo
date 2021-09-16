@@ -7,12 +7,12 @@
     - name: deploy new release app
       shell: >
         docker run 
-        -p 13000:3000 
-        -e DBHost=192.168.0.101 
-        -e DBPort=13306 
-        -e DBUser=demo 
-        -e DBPasswrod=demo 
-        -e DB=demo 
+        -p {{app_port}}:3000 
+        -e DBHost={{db_host}} 
+        -e DBPort={{db_port}} 
+        -e DBUser={{db_user}} 
+        -e DBPasswrod={{ db_password }} 
+        -e DB={{ db_name }} 
         --name app-v1
         -d  
         demo-app:1.0
