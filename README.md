@@ -86,11 +86,11 @@ demo-app           1.0       3bc69b2ab6c7   30 minutes ago   913MB
 ### 本地
 
 #### 升级数据库
-`pipenv run ansible-playbook -i ./inventory/hosts db.yml`
+`pipenv run ansible-playbook -i ./inventory/dev db.yml`
 #### 部署应用
-`pipenv run ansible-playbook -i ./inventory/hosts app.yml`
+`pipenv run ansible-playbook -i ./inventory/dev app.yml`
 #### 更改Nginx
-`pipenv run ansible-playbook -i ./inventory/hosts lb.yml`
+`pipenv run ansible-playbook -i ./inventory/dev lb.yml`
 ### 使用流水线
 `Jenkinsfile-dev`
 
@@ -135,3 +135,12 @@ db_port=13306
 db_name=demo
 db_user=demo
 ```
+
+#### 多环境适配
+##### 多环境配置设定
+
+这里使用ansible的inventory多环境配置来解决，即在inventory文件夹下为每个环境新建对应文件夹，并放入hosts、group_vars等配置
+
+##### jenkins
+
+新建 jenkins-prod 文件

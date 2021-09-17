@@ -8,7 +8,12 @@
         dest: /etc/nginx/nginx.conf
         mode: '0644'
         backup: yes
+      notify: reload nginx config
+    
+    - name: Flush handlers
+      meta: flush_handlers
 
+  handlers: 
     - name: reload nginx config
       command: nginx -s reload
 
