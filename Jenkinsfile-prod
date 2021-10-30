@@ -18,13 +18,23 @@ pipeline {
 
         stage('deploy app') {
             steps {
-                sh 'ansible-playbook -i ./deploy/inventory/prod ./deploy/app.yml'
+                ansiColor('xterm') {
+                    ansiblePlaybook( 
+                        playbook: './deploy/app.yml',
+                        inventory: './deploy/inventory/prod', 
+                        colorized: true) 
+                }
             }
         }
 
         stage('adjust lb') {
             steps {
-                sh 'ansible-playbook -i ./deploy/inventory/prod ./deploy/lb.yml'
+            ansiColor('xterm') {
+                    ansiblePlaybook( 
+                        playbook: './deploy/lb.yml',
+                        inventory: './deploy/inventory/prod', 
+                        colorized: true) 
+                }
             }
         }
     }

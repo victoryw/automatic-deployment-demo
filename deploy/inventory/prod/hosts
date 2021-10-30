@@ -8,7 +8,7 @@ host.docker.internal ansible_user=root ansible_connection=local
 www.example.com  ansible_user=root ansible_connection=ssh
 
 [all:vars]
-service_url=http://demo.app.prod/demo
+service_url=http://www.example.com/demo
 db_host=mysql.demo
 db_port=3306
 db_name=demo
