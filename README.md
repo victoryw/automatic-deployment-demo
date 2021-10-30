@@ -61,15 +61,20 @@
 ```
 
 ### 部署基础设施
-`docker-compose -d -f ./Infra.yml up`
-来完成 nginx 和 mysql 的部署。
-
+1. 使用`docker compose -f ./Infra.yml up -d`来完成 nginx 和 mysql 的部署，和网络环境的搭建  
+1. 使用`docker compose -f ./Infra.yml ps`查看部署状态 
 ``` docker
      Name                    Command                  State                   Ports
 -----------------------------------------------------------------------------------------------
 mysql.demo        docker-entrypoint.sh mysqld      Up             0.0.0.0:13306->3306/tcp,
                                                                   33060/tcp
 www.example.com   /bin/sh -c bash -c "/usr/s ...   Up (healthy)   0.0.0.0:2023->22/tcp,
+```  
+3. 使用`docker network ls`查看部署的网络**auto-deployment-demo**已经部署成功 
+``` docker
+NETWORK ID     NAME                   DRIVER    SCOPE
+444b63310f87   auto-deployment-demo   bridge    local
+
 ```
 
 ### 构建镜像

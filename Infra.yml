@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 
 services:
   nginx:
@@ -18,6 +18,8 @@ services:
           SSH_USER_PASSWORD: Passw0rd!
           SSH_PASSWORD_AUTHENTICATION: 'true'
           SSH_AUTHORIZED_KEYS: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkXTtMSy4D6L1TPwHZxd1EXjjVWDC/93CvtlbS7PTmlHdQFbCttgPoZp7mmwfdNanI1x6fOiAKBBaX6mEZyfcYMa3ZfZw+lU+N2n0slknoEcTxmGqG9rIy0uk9NEYN/zxunK6xVufvwhggKSAAQDMEMNqyxat2JJJ/Wn2GPlOEJtYIWC+al+gtVqya5Nszs6T/1OjZ0hP6KKVeMBxDl0tmU6CIMiMHhTcGK4u6uG2wuK1nDFWZreJYgQOKobUCNiBTiVSwMp7NpobytdX3KLCfeoDM2DSKMlQVDYIav5VEWSFb7t51YTQKeCEkNHwVMX5jCmqF8IbYr7N5fRwt5xDz victoryw@CNvictoryw-2.local
+    networks:
+        - auto-deployment-demo
   mysql:
     image: 'mysql'
     container_name: 'mysql.demo'
@@ -31,4 +33,10 @@ services:
       MYSQL_DATABASE: demo
       MYSQL_USER: demo
       MYSQL_PASSWORD: demo
+    networks:
+        - auto-deployment-demo
+
+networks:
+  auto-deployment-demo:
+    name: auto-deployment-demo
     
