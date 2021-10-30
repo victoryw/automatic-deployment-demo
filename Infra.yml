@@ -48,6 +48,10 @@ services:
         - 50000:50000
       volumes:
         -  /var/run/docker.sock:/var/run/docker.sock  #run container in the host 
+      links: 
+        - "www.example.com:demo.app.prod" #instead of the dns demo.app.prod
+      extra_hosts:
+        - "host.docker.internal:host-gateway" #linux should redirect host.docker.internal, so that call host by host.docker.internal
       networks:
         - auto-deployment-demo
 networks:
