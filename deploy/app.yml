@@ -7,7 +7,7 @@
     - name: deploy new release app
       shell: >
         docker run 
-        -p {{app_port}}:3000 
+        -p 13000:{{app_port}} 
         -e DBHost={{db_host}} 
         -e DBPort={{db_port}} 
         -e DBUser={{db_user}} 

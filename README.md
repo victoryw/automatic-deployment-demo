@@ -45,7 +45,7 @@
 请在/etc/hosts中，增加
 
 ``` bash
-127.0.0.1 demo.app.dev
+127.0.0.1 demo.app.prod
 ```
 
 
