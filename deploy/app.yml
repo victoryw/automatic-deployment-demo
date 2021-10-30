@@ -14,7 +14,7 @@
         -e DBPasswrod={{ db_password }} 
         -e DB={{ db_name }} 
         --name app-v1
-        --network: auto-deployment-demo
+        --network=auto-deployment-demo
         -d  
         demo-app:1.0
       register: command_output
