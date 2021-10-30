@@ -7,7 +7,12 @@ pipeline {
     stages {
         stage('migrate demo db') {
             steps {
-                sh 'ansible-playbook -i ./deploy/inventory/prod ./deploy/db.yml'
+                ansiColor('xterm') {
+                    ansiblePlaybook( 
+                        playbook: './deploy/db.yml',
+                        inventory: './deploy/inventory/prod', 
+                        colorized: true) 
+                }
             }
         }
 
