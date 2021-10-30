@@ -46,8 +46,6 @@
 
 1. docker
 1. docker-compose
-1. [ansible](https://docs.ansible.com/ansible/2.3/intro_installation.html)
-1. [jenkins](https://www.jenkins.io/doc/book/installing/war-file/)
 
 ### 配置host
 
@@ -55,13 +53,11 @@
 
 ``` bash
 127.0.0.1 demo.app.self
-127.0.0.1 dbserver
-127.0.0.1 appserver
-127.0.0.1 lbserver
 ```
 
 ### 部署基础设施
-1. 使用`docker compose -f ./Infra.yml up -d`来完成 nginx 和 mysql 的部署，和网络环境的搭建  
+1. 使用`which docker`得到**docker**命令行的路径，替换**Infra.yml**文件内的`/usr/local/bin/docker`
+1. 使用`docker compose -f ./Infra.yml up -d`来完成 nginx mysql 和 jenkins 的部署，和网络环境的搭建  
 1. 使用`docker compose -f ./Infra.yml ps`查看部署状态 
 ``` docker
      Name                    Command                  State                   Ports
@@ -70,11 +66,10 @@ mysql.demo        docker-entrypoint.sh mysqld      Up             0.0.0.0:13306-
                                                                   33060/tcp
 www.example.com   /bin/sh -c bash -c "/usr/s ...   Up (healthy)   0.0.0.0:2023->22/tcp,
 ```  
-3. 使用`docker network ls`查看部署的网络**auto-deployment-demo**已经部署成功 
+4. 使用`docker network ls`查看部署的网络**auto-deployment-demo**已经部署成功 
 ``` docker
 NETWORK ID     NAME                   DRIVER    SCOPE
 444b63310f87   auto-deployment-demo   bridge    local
-
 ```
 
 ### 构建镜像

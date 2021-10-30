@@ -17,7 +17,8 @@ services:
           SSH_SUDO: ALL=(ALL) NOPASSWD:ALL
           SSH_USER_PASSWORD: Passw0rd!
           SSH_PASSWORD_AUTHENTICATION: 'true'
-          SSH_AUTHORIZED_KEYS: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkXTtMSy4D6L1TPwHZxd1EXjjVWDC/93CvtlbS7PTmlHdQFbCttgPoZp7mmwfdNanI1x6fOiAKBBaX6mEZyfcYMa3ZfZw+lU+N2n0slknoEcTxmGqG9rIy0uk9NEYN/zxunK6xVufvwhggKSAAQDMEMNqyxat2JJJ/Wn2GPlOEJtYIWC+al+gtVqya5Nszs6T/1OjZ0hP6KKVeMBxDl0tmU6CIMiMHhTcGK4u6uG2wuK1nDFWZreJYgQOKobUCNiBTiVSwMp7NpobytdX3KLCfeoDM2DSKMlQVDYIav5VEWSFb7t51YTQKeCEkNHwVMX5jCmqF8IbYr7N5fRwt5xDz victoryw@CNvictoryw-2.local
+          # this public key is from ./ssh-key/id_rsa_shared.pub
+          SSH_AUTHORIZED_KEYS: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC4ee2r0EY5vLX3A1KzDc3esC7GpfpzzVMUtpcOuryfFFu30wNNy79M31mD4QjL7/quc/O1PYKknFqkCkSvJJwS1tTHmfWL7s2G4lNjjblbzdPC2RigwAVHUlZonNOE9xmNX1yDg55LRD5aFQID89kEX395fmloq07mOwQ/YwP65JaXGbaTUv2+vz133vLi7Ri44ggRyod5C9DWwEr1Gk+pGupjs/OF3Npfdcuh0hMEUM+WDK/jsqeFQBjFJ3o+WOS++5mT0Q7nS35AYZ/iPZBDexUl/T+sUvQBtM2aC6LHMRMRryvMrn6v6/bzs+M2VKtYOzc6z2SLCc+2g8b4ffFNH4ol7lunOHUJPA6Ga5Y4QrIaNnYlwcVfdH8ONb6j7Ba+S8tFZz06fCKBEFs8HvHBhkbLbLofCI+oIxBcvrWm2YcAdWSDxG8zrTiCY1IGK638h1Xph8SMX0FWEycMSXPAzOLloze9NMZ9fnUmId8CV0NjW6fdvZqxk/asNzZmM+GyaizdxpravgxwCq5ZybaJZ1vlD+29QVwH9W+ngatGxrHZ7W2g8apDCtCM+DDrCId0Csue70GfDYQavTmbrvEONZP162TvSvMnSLvJ+IZyj53JL79sZWcj8ib7Gg2YxWphVGCY/2OYJWHpoB7S8Fw3dUYhQ7NCN9Dsz0zMrM0hiQ== yanwang@Yans-MacBook-Pro.local
     networks:
         - auto-deployment-demo
   mysql:
@@ -35,7 +36,20 @@ services:
       MYSQL_PASSWORD: demo
     networks:
         - auto-deployment-demo
-
+  jenkins:
+      build: ./dockerfiles/jenkins
+      image: 'jenkins-ssh'
+      container_name: jenkins
+      restart: always
+      privileged: true
+      user: root
+      ports:
+        - 8080:8080
+        - 50000:50000
+      volumes:
+        -  /var/run/docker.sock:/var/run/docker.sock  #run container in the host 
+      networks:
+        - auto-deployment-demo
 networks:
   auto-deployment-demo:
     name: auto-deployment-demo
