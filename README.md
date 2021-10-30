@@ -38,33 +38,25 @@
 
 ## 环境准备
 
-准备一个linux/macos环境
-
-### 安装软件
-
+准备一个linux/macos环境。  
 请在开始运行前，确保已经安装了以下软件：
-
-1. docker
-1. docker-compose
-
-### 配置host
+* docker
 
 请在/etc/hosts中，增加
 
 ``` bash
-127.0.0.1 demo.app.self
+127.0.0.1 demo.app.dev
 ```
 
+
 ### 部署基础设施
-1. 使用`which docker`得到**docker**命令行的路径，替换**Infra.yml**文件内的`/usr/local/bin/docker`
-1. 使用`docker compose -f ./Infra.yml up -d`来完成 nginx mysql 和 jenkins 的部署，和网络环境的搭建  
+1. 使用`docker compose -f ./Infra.yml up -d`来完成 nginx mysql jenkins 的部署，和网络环境的搭建  
 1. 使用`docker compose -f ./Infra.yml ps`查看部署状态 
 ``` docker
-     Name                    Command                  State                   Ports
------------------------------------------------------------------------------------------------
-mysql.demo        docker-entrypoint.sh mysqld      Up             0.0.0.0:13306->3306/tcp,
-                                                                  33060/tcp
-www.example.com   /bin/sh -c bash -c "/usr/s ...   Up (healthy)   0.0.0.0:2023->22/tcp,
+NAME                COMMAND                  SERVICE             STATUS              PORTS
+jenkins             "/sbin/tini -- /usr/…"   jenkins             running             0.0.0.0:8080->8080/tcp, 0.0.0.0:50000->50000/tcp
+mysql.demo          "docker-entrypoint.s…"   mysql               running             0.0.0.0:13306->3306/tcp
+www.example.com     "/bin/sh -c 'bash -c…"   nginx               running (healthy)   0.0.0.0:2023->22/tcp, 0.0.0.0:80->80/tcp
 ```  
 4. 使用`docker network ls`查看部署的网络**auto-deployment-demo**已经部署成功 
 ``` docker
