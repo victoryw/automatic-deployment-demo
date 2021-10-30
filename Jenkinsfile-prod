@@ -4,12 +4,12 @@ pipeline {
         Path="${PATH}:/usr/local/bin"
     }
 
-    stages('install ansible') {
-        steps {
-            sh 'pip install ansible'
-        }
-    }
     stages {
+        stage('install ansible') {
+            steps {
+                sh 'pip install ansible'
+            }
+        }
         stage('migrate demo db') {
             steps {
                 ansiColor('xterm') {
