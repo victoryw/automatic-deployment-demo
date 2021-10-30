@@ -21,10 +21,11 @@
 
     - debug:
         var: command_output.stdout_lines
-
+- hosts: ci
+  tasks:
     - name: smoke test
       uri:
-        url: http://{{inventory_hostname}}:13000/demo
+        url: http://app-v1:3000/demo
         return_content: yes
         status_code: 200
       register: response
