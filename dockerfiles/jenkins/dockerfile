@@ -2,6 +2,10 @@ FROM jenkins/jenkins:lts-jdk11
 USER root
 RUN apt-get update && apt-get install -y openssh-client && apt-get install -y curl
 
+#Install python3 && ansible
+RUN apt-get update -y && \
+    apt-get install -y python3.6 python3-pip
+RUN pip3 install --upgrade pip
 # Install docker client    
 ENV DOCKER_CHANNEL stable
 ENV DOCKER_VERSION 17.03.1-ce
@@ -16,3 +20,7 @@ COPY ssh_config /root/.ssh/config
 RUN chown -R root:root root/.ssh
 
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"  
+
+#setup the jenkins plugins
+COPY plugins /usr/share/jenkins/ref/plugins.txt
+RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt

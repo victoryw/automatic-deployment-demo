@@ -1,5 +1,5 @@
 ---
-- hosts: dbserver
+- hosts: ci
   tasks:
     - name: migration demo database
       shell: docker run db-migration:1.0 -url=jdbc:mysql://{{ db_host }}:{{db_port}}/{{db_name}} -user={{ db_user }} -password={{db_password}} migrate

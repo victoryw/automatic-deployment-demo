@@ -18,7 +18,7 @@
       command: nginx -s reload
 
 
-- hosts: client
+- hosts: ci
   tasks:
     - name: smoke test
       uri:

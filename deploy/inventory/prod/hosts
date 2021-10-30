@@ -1,21 +1,18 @@
-[client]
-127.0.0.1 ansible_user=victoryw ansible_connection=local
-
-[dbserver]
-dbserver ansible_user=victoryw ansible_connection=local
+[ci]
+127.0.0.1 ansible_user=root ansible_connection=local
 
 [appserver]
-appserver ansible_user=victoryw ansible_connection=local
-
+host.docker.internal ansible_user=root ansible_connection=local
+# host.docker.internal is the host ip of docker, use as the app server
 [lbserver]
-lbserver ansible_port=2023 ansible_user=root ansible_connection=ssh
+www.example.com  ansible_user=root ansible_connection=ssh
 
 [all:vars]
-service_url=http://demo.app.self/demo
-db_host=192.168.31.31
-db_port=13306
+service_url=http://demo.app.prod/demo
+db_host=mysql.demo
+db_port=3306
 db_name=demo
 db_user=demo
 db_password=demo
-app_host=192.168.31.31
-app_port=13000
+app_host=app-v1
+app_port=3000
