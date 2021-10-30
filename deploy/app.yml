@@ -3,7 +3,7 @@
   tasks:
     - name: destroy release app
       shell: >
-        docker rm app-v1 -f
+        docker rm -f app-v1 2>/dev/null || true
     - name: deploy new release app
       shell: >
         docker run 
