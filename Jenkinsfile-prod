@@ -5,11 +5,6 @@ pipeline {
     }
 
     stages {
-        stage('install ansible') {
-            steps {
-                sh 'pip install ansible'
-            }
-        }
         stage('migrate demo db') {
             steps {
                 ansiColor('xterm') {

@@ -136,3 +136,6 @@ db_user=demo
 ##### jenkins
 
 新建 jenkins-prod 文件
+
+## 展示效果
+访问 http://demo.app.prod/demo 
