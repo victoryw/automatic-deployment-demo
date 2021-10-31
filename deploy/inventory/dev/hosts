@@ -8,7 +8,7 @@ host.docker.internal ansible_port=2023 ansible_user=root ansible_connection=ssh
 service_url=http://host.docker.internal/demo
 app_smoke_test_url=http://host.docker.internal:13000/demo
 db_host=host.docker.internal
-db_port=13306
+db_port="13306"
 db_name=demo
 db_user=demo
 db_password=demo

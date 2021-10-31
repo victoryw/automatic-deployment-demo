@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y openssh-client && apt-get install -y cu
 #Install python3 && ansible
 RUN apt-get update -y && \
     apt-get install -y python3.6 python3-pip
-RUN pip3 install --upgrade pip && pip install ansible -i https://mirrors.aliyun.com/pypi/simple/
+RUN pip3 install --upgrade pip && python3 -m pip install ansible && python3 -m pip install docker
 # Install docker client    
 ENV DOCKER_CHANNEL stable
 ENV DOCKER_VERSION 17.03.1-ce

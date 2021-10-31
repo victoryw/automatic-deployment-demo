@@ -81,11 +81,11 @@ demo-app           1.0       3bc69b2ab6c7   30 minutes ago   913MB
 构建一个可以ssh nginx镜像的ansible容器作为本地调试使用
 #### 升级数据库
 
-`docker run -it -v $(pwd)/deploy:/root/deploy -v /var/run/docker.sock:/var/run/docker.sock ansible-debug-env:v1 ansible-playbook -i ./inventory/dev db.yml`
+`docker run --rm -it -v $(pwd)/deploy:/root/deploy -v /var/run/docker.sock:/var/run/docker.sock ansible-debug-env:v1 ansible-playbook -i ./inventory/dev db.yml`
 #### 部署应用
-`docker run -it -v $(pwd)/deploy:/root/deploy -v /var/run/docker.sock:/var/run/docker.sock ansible-debug-env:v1 ansible-playbook -i ./inventory/dev app.yml`
+`docker run --rm -it -v $(pwd)/deploy:/root/deploy -v /var/run/docker.sock:/var/run/docker.sock ansible-debug-env:v1 ansible-playbook -i ./inventory/dev app.yml`
 #### 更改Nginx
-`docker run -it -v $(pwd)/deploy:/root/deploy -v /var/run/docker.sock:/var/run/docker.sock ansible-debug-env:v1 ansible-playbook -i ./inventory/dev lb.yml`
+`docker run --rm -it -v $(pwd)/deploy:/root/deploy -v /var/run/docker.sock:/var/run/docker.sock ansible-debug-env:v1 ansible-playbook -i ./inventory/dev lb.yml`
 
 ### 多环境
 #### 配置和脚本分离
