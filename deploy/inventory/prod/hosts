@@ -8,10 +8,10 @@ www.example.com  ansible_user=root ansible_connection=ssh
 service_url=http://demo.app.prod/demo
 app_smoke_test_url=http://app-v1:3000/demo
 db_host=mysql.demo
-db_port=3306
+db_port="3306"
 db_name=demo
 db_user=demo
 db_password=demo
 app_host=app-v1
-app_port=3000
+app_port="3000"
 app_domain_name=demo.app.prod
