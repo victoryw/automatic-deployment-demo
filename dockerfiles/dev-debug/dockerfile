@@ -3,7 +3,7 @@ USER root
 RUN apt-get update && apt-get install -y openssh-client && apt-get install -y curl
 
 #Install python3 && ansible
-RUN pip install ansible -i https://mirrors.aliyun.com/pypi/simple/
+RUN pip install ansible && pip install docker
 
 # Install docker client    
 ENV DOCKER_CHANNEL stable

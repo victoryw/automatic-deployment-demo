@@ -83,9 +83,9 @@ demo-app           1.0       3bc69b2ab6c7   30 minutes ago   913MB
 
 `docker run -it -v $(pwd)/deploy:/root/deploy -v /var/run/docker.sock:/var/run/docker.sock ansible-debug-env:v1 ansible-playbook -i ./inventory/dev db.yml`
 #### 部署应用
-`ansible-playbook -i ./inventory/dev app.yml`
+`docker run -it -v $(pwd)/deploy:/root/deploy -v /var/run/docker.sock:/var/run/docker.sock ansible-debug-env:v1 ansible-playbook -i ./inventory/dev app.yml`
 #### 更改Nginx
-`ansible-playbook -i ./inventory/dev lb.yml`
+`docker run -it -v $(pwd)/deploy:/root/deploy -v /var/run/docker.sock:/var/run/docker.sock ansible-debug-env:v1 ansible-playbook -i ./inventory/dev lb.yml`
 
 ### 多环境
 #### 配置和脚本分离

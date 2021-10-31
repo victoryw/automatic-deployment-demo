@@ -1,9 +1,6 @@
 [ci]
 127.0.0.1 ansible_user=root ansible_connection=local
 
-[appserver]
-127.0.0.1 ansible_user=root ansible_connection=local
-
 [lbserver]
 host.docker.internal ansible_port=2023 ansible_user=root ansible_connection=ssh
 

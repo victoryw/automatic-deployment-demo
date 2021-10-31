@@ -1,5 +1,5 @@
 ---
-- hosts: appserver
+- hosts: ci
   tasks:
     - name: destroy release app
       shell: >
