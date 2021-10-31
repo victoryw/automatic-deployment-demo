@@ -6,9 +6,10 @@ host.docker.internal ansible_user=root ansible_connection=local
 # host.docker.internal is the host ip of docker, use as the app server
 [lbserver]
 www.example.com  ansible_user=root ansible_connection=ssh
-
+     
 [all:vars]
 service_url=http://demo.app.prod/demo
+app_smoke_test_url=http://app-v1:3000/demo
 db_host=mysql.demo
 db_port=3306
 db_name=demo

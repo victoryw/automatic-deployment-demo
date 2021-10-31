@@ -1,21 +1,20 @@
-[client]
-127.0.0.1 ansible_user=victoryw ansible_connection=local
-
-[dbserver]
-dbserver ansible_user=victoryw ansible_connection=local
+[ci]
+127.0.0.1 ansible_user=root ansible_connection=local
 
 [appserver]
-appserver ansible_user=victoryw ansible_connection=local
+127.0.0.1 ansible_user=root ansible_connection=local
 
 [lbserver]
-lbserver ansible_port=2023 ansible_user=root ansible_connection=ssh
+host.docker.internal ansible_port=2023 ansible_user=root ansible_connection=ssh
 
 [all:vars]
-service_url=http://demo.app.self/demo
-db_host=192.168.31.31
+service_url=http://host.docker.internal/demo
+app_smoke_test_url=http://host.docker.internal:13000/demo
+db_host=host.docker.internal
 db_port=13306
 db_name=demo
 db_user=demo
 db_password=demo
-app_host=192.168.31.31
+app_host=host.docker.internal
 app_port=13000
+app_domain_name=localhost

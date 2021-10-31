@@ -7,7 +7,7 @@
     - name: deploy new release app
       shell: >
         docker run 
-        -p 13000:{{app_port}} 
+        -p {{app_port}}:3000 
         -e DBHost={{db_host}} 
         -e DBPort={{db_port}} 
         -e DBUser={{db_user}} 
@@ -25,7 +25,7 @@
   tasks:
     - name: smoke test
       uri:
-        url: http://app-v1:3000/demo
+        url: "{{ app_smoke_test_url }}"
         return_content: yes
         status_code: 200
       register: response

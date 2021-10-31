@@ -77,14 +77,15 @@ demo-app           1.0       3bc69b2ab6c7   30 minutes ago   913MB
 
 ### 本地
 
+首先运行`docker build -f ./dockerfiles/dev-debug/dockerfile --force-rm  -t ansible-debug-env:v1 ./dockerfiles/dev-debug`
+构建一个可以ssh nginx镜像的ansible容器作为本地调试使用
 #### 升级数据库
-`pipenv run ansible-playbook -i ./inventory/dev db.yml`
+
+`docker run -it -v $(pwd)/deploy:/root/deploy -v /var/run/docker.sock:/var/run/docker.sock ansible-debug-env:v1 ansible-playbook -i ./inventory/dev db.yml`
 #### 部署应用
-`pipenv run ansible-playbook -i ./inventory/dev app.yml`
+`ansible-playbook -i ./inventory/dev app.yml`
 #### 更改Nginx
-`pipenv run ansible-playbook -i ./inventory/dev lb.yml`
-### 使用流水线
-`Jenkinsfile-dev`
+`ansible-playbook -i ./inventory/dev lb.yml`
 
 ### 多环境
 #### 配置和脚本分离
