@@ -23,7 +23,7 @@ jobs:
       - bash: .azure-pipelines/scripts/report-coverage.sh
         displayName: Generate Coverage Report
         condition: gt(variables.coverageFileCount, 0)
-      - task: PublishCodeCoverageResults@1
+      - task: PublishCodeCoverageResults@1.200.0
         inputs:
           codeCoverageTool: Cobertura
           # Azure Pipelines only accepts a single coverage data file.
