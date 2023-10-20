@@ -1,9 +1,9 @@
-FROM node:16 As Builder
+FROM node:21 As Builder
 WORKDIR /root/app
 COPY package.json .
 RUN npm install
 
-FROM node:16 As Release
+FROM node:21 As Release
 WORKDIR /root
 COPY --from=builder /root/app/node_modules ./node_modules
 COPY . .
